@@ -19,6 +19,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var bmiNumberLabel: UILabel!
     @IBOutlet weak var bmiCategoryLabel: UILabel!
     @IBOutlet weak var bmiConstantLabel: UILabel!
+    @IBOutlet var constantLabels: [UILabel]!
     
     //MARK: Actions
     @IBAction func weightSliderChanged(_ sender: UISlider) {
@@ -78,6 +79,14 @@ class ViewController: UIViewController {
         weightLabel.textColor = UIColor.black
         heightLabel.textColor = UIColor.black
         bmiConstantLabel.textColor = UIColor.black
+        constantLabels.forEach({label in
+            label.textColor = UIColor(
+                red: 46/255,
+                green: 125/255,
+                blue: 246/255,
+                alpha: 1
+            )
+        })
     }
     func makeLayoutDark(){
         view.backgroundColor = UIColor.black
@@ -85,6 +94,9 @@ class ViewController: UIViewController {
         weightLabel.textColor = UIColor.white
         heightLabel.textColor = UIColor.white
         bmiConstantLabel.textColor = UIColor.white
+        constantLabels.forEach({label in
+            label.textColor = UIColor.cyan
+        })
     }
 
     //MARK: Lifecycle Hooks

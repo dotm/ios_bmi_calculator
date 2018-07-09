@@ -126,6 +126,10 @@
                         <outlet property="heightSlider" destination="M6b-cV-t8k" id="5dq-NW-R6J"/>
                         <outlet property="weightLabel" destination="t9B-xA-bl7" id="ujW-m9-Cpo"/>
                         <outlet property="weightSlider" destination="j1K-4f-JhR" id="AwH-rH-LeA"/>
+                        <outletCollection property="constantLabels" destination="jcZ-XL-LeO" collectionClass="NSMutableArray" id="z95-cY-Jf1"/>
+                        <outletCollection property="constantLabels" destination="3EZ-Jy-WTX" collectionClass="NSMutableArray" id="pA1-mi-e9A"/>
+                        <outletCollection property="constantLabels" destination="ZcA-99-B8P" collectionClass="NSMutableArray" id="JPR-MU-jbG"/>
+                        <outletCollection property="constantLabels" destination="Z8R-9j-Ph6" collectionClass="NSMutableArray" id="0Ij-2Z-j7k"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
