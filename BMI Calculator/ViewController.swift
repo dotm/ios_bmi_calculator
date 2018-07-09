@@ -20,22 +20,54 @@ class ViewController: UIViewController {
     @IBOutlet weak var bmiCategoryLabel: UILabel!
     @IBOutlet weak var bmiConstantLabel: UILabel!
     @IBOutlet var constantLabels: [UILabel]!
+    @IBOutlet var blackWhiteLabels: [UILabel]!
+    
+    var weight: Float = 0 {
+        didSet {
+            weightLabel.text = String(format: "%.1f", weight)
+            setBMI()
+        }
+    }
+    var height: Float = 0 {
+        didSet {
+            heightLabel.text = String(format: "%.1f", height)
+            setBMI()
+        }
+    }
+    var bmi: Float {
+        return weight / (height * height)
+    }
+    var darkLayout = false {
+        didSet {
+            if darkLayout {
+                makeLayoutDark()
+            }else{
+                makeLayoutLight()
+            }
+        }
+    }
     
     //MARK: Actions
     @IBAction func weightSliderChanged(_ sender: UISlider) {
-        weightLabel.text = String(format: "%.1f", sender.value)
-        setBMI()
+        weight = sender.value
     }
     @IBAction func heightSliderChanged(_ sender: UISlider) {
-        heightLabel.text = String(format: "%.2f", sender.value)
-        setBMI()
+        height = sender.value
     }
     @IBAction func changeLayoutColor(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
-        case 0: makeLayoutLight()
-        case 1: makeLayoutDark()
+        case 0: darkLayout = false
+        case 1: darkLayout = true
         default: break
         }
+    }
+    
+    //MARK: Lifecycle Hooks
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+        weight = 40
+        height = 1.70
     }
     
     //MARK: Helper functions
@@ -55,30 +87,26 @@ class ViewController: UIViewController {
         default: return UIColor.red
         }
     }
+    
+    //MARK: Functions to render UI
     func setBMI(){
-        let weight = weightSlider.value
-        let height = heightSlider.value
-        
-        if height == 0.0 {
+        if height == 0 {
             bmiNumberLabel.text = String(format: "%.1f", 0)
             bmiNumberLabel.textColor = getColor_ofBMI(0)
             bmiCategoryLabel.text = "Unspecified"
             bmiCategoryLabel.textColor = getColor_ofBMI(0)
-            return
+        }else{
+            bmiNumberLabel.text = String(format: "%.1f", bmi)
+            bmiNumberLabel.textColor = getColor_ofBMI(bmi)
+            bmiCategoryLabel.text = getCategory_ofBMI(bmi)
+            bmiCategoryLabel.textColor = getColor_ofBMI(bmi)
         }
-        let bmi = weight / (height * height)
-        
-        bmiNumberLabel.text = String(format: "%.1f", bmi)
-        bmiNumberLabel.textColor = getColor_ofBMI(bmi)
-        bmiCategoryLabel.text = getCategory_ofBMI(bmi)
-        bmiCategoryLabel.textColor = getColor_ofBMI(bmi)
     }
     func makeLayoutLight(){
         view.backgroundColor = UIColor.white
-        bmiTitle.textColor = UIColor.black
-        weightLabel.textColor = UIColor.black
-        heightLabel.textColor = UIColor.black
-        bmiConstantLabel.textColor = UIColor.black
+        blackWhiteLabels.forEach({label in
+            label.textColor = UIColor.black
+        })
         constantLabels.forEach({label in
             label.textColor = UIColor(
                 red: 46/255,
@@ -90,21 +118,11 @@ class ViewController: UIViewController {
     }
     func makeLayoutDark(){
         view.backgroundColor = UIColor.black
-        bmiTitle.textColor = UIColor.white
-        weightLabel.textColor = UIColor.white
-        heightLabel.textColor = UIColor.white
-        bmiConstantLabel.textColor = UIColor.white
+        blackWhiteLabels.forEach({label in
+            label.textColor = UIColor.white
+        })
         constantLabels.forEach({label in
             label.textColor = UIColor.cyan
         })
-    }
-
-    //MARK: Lifecycle Hooks
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        weightLabel.text = String(format: "%.1f", weightSlider.value)
-        heightLabel.text = String(format: "%.2f", heightSlider.value)
-        setBMI()
     }
 }

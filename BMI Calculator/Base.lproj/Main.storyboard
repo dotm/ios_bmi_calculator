@@ -130,6 +130,10 @@
                         <outletCollection property="constantLabels" destination="3EZ-Jy-WTX" collectionClass="NSMutableArray" id="pA1-mi-e9A"/>
                         <outletCollection property="constantLabels" destination="ZcA-99-B8P" collectionClass="NSMutableArray" id="JPR-MU-jbG"/>
                         <outletCollection property="constantLabels" destination="Z8R-9j-Ph6" collectionClass="NSMutableArray" id="0Ij-2Z-j7k"/>
+                        <outletCollection property="blackWhiteLabels" destination="t9B-xA-bl7" collectionClass="NSMutableArray" id="fbO-Ya-rZm"/>
+                        <outletCollection property="blackWhiteLabels" destination="1bh-vk-yhu" collectionClass="NSMutableArray" id="TNQ-aO-TPv"/>
+                        <outletCollection property="blackWhiteLabels" destination="goW-JF-vm3" collectionClass="NSMutableArray" id="Vme-jJ-G1Y"/>
+                        <outletCollection property="blackWhiteLabels" destination="lVX-Ud-FeG" collectionClass="NSMutableArray" id="2xw-60-fb6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
